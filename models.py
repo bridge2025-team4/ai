@@ -13,3 +13,6 @@ class UserProfile(BaseModel):
 class RequestData(BaseModel):
     earthquake_data: EarthquakeData
     user_profile: UserProfile
+
+class UserPrompt(BaseModel):
+    prompt: str

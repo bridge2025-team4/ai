@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
-from models import RequestData  
+from models import RequestData, UserPrompt  
 
 load_dotenv()
 
@@ -33,3 +33,9 @@ Important:
     model = genai.GenerativeModel("models/gemini-1.5-pro")
     response = model.generate_content(prompt)
     return {"ai_message": response.text}
+
+@app.post("/gemini/chat")
+async def chat_with_gemini(user_input: UserPrompt):
+    model = genai.GenerativeModel("models/gemini-1.5-pro")
+    response = model.generate_content(user_input.prompt)
+    return {"ai_response": response.text}
